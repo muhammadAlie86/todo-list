@@ -1,7 +1,6 @@
 package config
 
 import (
-	"encoding/base64"
 	"log"
 	"os"
 	"strconv"
@@ -69,17 +68,17 @@ func InitConfig() *AllConfig {
 	}
 
 	password := getEnv("PGSQL_PASSWORD")
-	var passwordBytes = []byte(password)
+	//	var passwordBytes = []byte(password)
 
 	// Enkripsi ke Base64
-	pgsqlPass := base64.StdEncoding.EncodeToString(passwordBytes)
+	//pgsqlPass := base64.StdEncoding.EncodeToString(passwordBytes)
 
 	pgsqlConfig := &PGSQLConfig{
 		PG_HOST:            getEnv("PGSQL_HOST"),
 		PG_PORT:            getEnv("PGSQL_PORT"),
 		PG_DBNAME:          getEnv("PGSQL_DBNAME"),
 		PG_USER:            getEnv("PGSQL_USER"),
-		PG_PASSWORD:        pgsqlPass,
+		PG_PASSWORD:        password,
 		PG_SSLMODE:         getEnv("PGSQL_SSLMODE"),
 		PG_MaxIdleConn:     getIntEnv("PGSQL_MaxIdleConn"),
 		PG_MaxOpenConn:     getIntEnv("PGSQL_MaxOpenConn"),
