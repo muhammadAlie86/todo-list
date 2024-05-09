@@ -67,18 +67,12 @@ func InitConfig() *AllConfig {
 		JWT_REFRESH_ALLOW_BEFORE_EXPIRE_AT: getFloat64Env("JWT_REFRESH_ALLOW_BEFORE_EXPIRE_AT"),
 	}
 
-	password := getEnv("PGSQL_PASSWORD")
-	//	var passwordBytes = []byte(password)
-
-	// Enkripsi ke Base64
-	//pgsqlPass := base64.StdEncoding.EncodeToString(passwordBytes)
-
 	pgsqlConfig := &PGSQLConfig{
 		PG_HOST:            getEnv("PGSQL_HOST"),
 		PG_PORT:            getEnv("PGSQL_PORT"),
 		PG_DBNAME:          getEnv("PGSQL_DBNAME"),
 		PG_USER:            getEnv("PGSQL_USER"),
-		PG_PASSWORD:        password,
+		PG_PASSWORD:        getEnv("PGSQL_PASSWORD"),
 		PG_SSLMODE:         getEnv("PGSQL_SSLMODE"),
 		PG_MaxIdleConn:     getIntEnv("PGSQL_MaxIdleConn"),
 		PG_MaxOpenConn:     getIntEnv("PGSQL_MaxOpenConn"),
